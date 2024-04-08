@@ -8,13 +8,13 @@ import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tttrfge.View.recyclerview.RickAdapter
-import com.tttrfge.Model.RickAndMortyApi
+import com.tttrfge.Model.Apis.RickAndMortyApi
+import com.tttrfge.View.CharacterListActivity
+import com.tttrfge.rickmorty.databinding.SearchActivityBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -27,6 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var characterAdapter: RickAdapter
+    private lateinit var binding: SearchActivityBinding
 
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://rickandmortyapi.com/api/")
@@ -37,10 +38,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.search_activity)
+        binding = SearchActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val searchEditText: EditText = findViewById(R.id.word_find)
-        val searchButton: ImageView = findViewById(R.id.searchBT)
         recyclerView = findViewById(R.id.searchResultsRecyclerView)
 
         characterAdapter = RickAdapter(this)
@@ -49,18 +49,23 @@ import retrofit2.converter.gson.GsonConverterFactory
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = characterAdapter
 
-        searchEditText.setOnEditorActionListener { _, actionId, _ ->
+        binding.wordFind.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                val characterName = searchEditText.text.toString()
+                val characterName = binding.wordFind.text.toString()
                 performSearch(characterName)
                 hideKeyboard()
                 return@setOnEditorActionListener true
             }
             false
         }
+        binding.backBT.setOnClickListener {
+            val intent = Intent(this, CharacterListActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
-        searchButton.setOnClickListener {
-            val characterName = searchEditText.text.toString()
+        binding.searchBT.setOnClickListener {
+            val characterName = binding.wordFind.text.toString()
             if (isNetworkConnected()) {
                 performSearch(characterName)
             } else {

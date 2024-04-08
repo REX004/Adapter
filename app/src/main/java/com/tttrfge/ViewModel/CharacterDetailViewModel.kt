@@ -2,8 +2,8 @@
 //
 //import androidx.lifecycle.ViewModel
 //import androidx.lifecycle.viewModelScope
-//import com.tttrfge.Model.Character
-//import com.tttrfge.Model.FavoritesManager
+//import com.tttrfge.Data.Character
+//import com.tttrfge.Model.repository.FavoritesManager
 //import kotlinx.coroutines.launch
 //
 //class CharacterDetailViewModel : ViewModel() {

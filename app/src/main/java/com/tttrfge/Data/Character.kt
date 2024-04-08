@@ -1,4 +1,4 @@
-package com.tttrfge.Model
+package com.tttrfge.Data
 
 data class Character(
     val id: String,

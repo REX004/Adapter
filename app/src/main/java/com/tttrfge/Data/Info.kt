@@ -1,4 +1,4 @@
-package com.tttrfge.Model
+package com.tttrfge.Data
 
 data class Info(
     val count: Int,

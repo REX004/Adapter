@@ -2,6 +2,7 @@ package com.tttrfge.rickmorty
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.tttrfge.View.CharacterListActivity
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

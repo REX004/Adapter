@@ -1,9 +1,10 @@
-package com.tttrfge.Model
+package com.tttrfge.Model.repository
 
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.tttrfge.Data.Character
 
 object FavoritesManager {
 

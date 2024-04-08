@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CharacterListActivity">
+    tools:context="com.tttrfge.View.CharacterListActivity">
 
 
 
@@ -61,7 +61,7 @@
         android:fontFamily="@font/rubik_medium"
         android:text="Favorites"
         android:textSize="15dp"
-        app:backgroundTint="@color/black"
+        app:backgroundTint="@color/backgrount_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -75,7 +75,7 @@
         android:fontFamily="@font/rubik_medium"
         android:text="Search"
         android:textSize="15dp"
-        app:backgroundTint="#F80017FF"
+        app:backgroundTint="@color/background_search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -52,7 +52,6 @@ dependencies {
     //Glide pictures
     implementation ("com.github.bumptech.glide:glide:4.12.0")
 
-
     //RecyclerView
     implementation ("androidx.recyclerview:recyclerview:1.2.1")
 
@@ -67,5 +66,8 @@ dependencies {
     annotationProcessor("androidx.room:room-compiler:2.6.1")
 
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
+
+
+
 
 }

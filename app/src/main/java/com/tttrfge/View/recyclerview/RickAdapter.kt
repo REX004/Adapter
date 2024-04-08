@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.tttrfge.Model.Character
+import com.tttrfge.Data.Character
 import com.tttrfge.rickmorty.CharacterDetailActivity
 import com.tttrfge.rickmorty.R
 import com.tttrfge.rickmorty.databinding.ItemListBinding
@@ -21,8 +21,10 @@ class RickAdapter(private val context: Context)
 
     private val characters: MutableList<Character> = mutableListOf()
 
+    private var lastLoadedIndex = 0
     @SuppressLint("NotifyDataSetChanged")
     fun updateCharacters(newCharacters: List<Character>) {
+        lastLoadedIndex = characters.size
         characters.addAll(newCharacters)
         notifyDataSetChanged()
     }

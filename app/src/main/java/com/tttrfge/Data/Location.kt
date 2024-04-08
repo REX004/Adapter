@@ -1,4 +1,4 @@
-package com.tttrfge.Model
+package com.tttrfge.Data
 
 data class Location(
     val name: String,

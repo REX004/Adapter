@@ -57,14 +57,32 @@
         android:layout_gravity="center_horizontal"
         android:text="Status" />
 
-    <Button
-        android:id="@+id/addToFavoritesButton"
+    <LinearLayout
+        android:layout_marginTop="240dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="130dp"
-        android:background="@drawable/search_board"
-        android:text="Add to Favorites"
-        app:backgroundTint="@color/black" />
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/addToFavoritesButton"
+            android:layout_width="160dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/search_board"
+            android:text="Add to Favorites"
+            app:backgroundTint="@color/backgrount_button" />
+        <Button
+            android:id="@+id/backBT"
+            android:layout_width="160dp"
+            android:layout_height="60dp"
+            android:background="@drawable/search_board"
+            app:backgroundTint="@color/background_search"
+            android:fontFamily="@font/rubik_medium"
+            android:text="Go Home"
+            android:textSize="15dp"
+            android:layout_marginLeft="60dp"
+            />
+    </LinearLayout>
+
+
 
 </LinearLayout>

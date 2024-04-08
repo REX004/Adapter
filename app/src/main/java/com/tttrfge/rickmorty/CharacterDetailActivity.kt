@@ -1,14 +1,16 @@
 package com.tttrfge.rickmorty
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.tttrfge.Model.FavoritesManager
-import com.tttrfge.Model.Character
-import com.tttrfge.Model.Location
+import com.tttrfge.Model.repository.FavoritesManager
+import com.tttrfge.Data.Character
+import com.tttrfge.Data.Location
+import com.tttrfge.View.CharacterListActivity
 import com.tttrfge.rickmorty.databinding.CharacterDetailActivityBinding
 
 class CharacterDetailActivity : AppCompatActivity() {
@@ -30,6 +32,11 @@ class CharacterDetailActivity : AppCompatActivity() {
         val characterImage = intent.getStringExtra("Image")
 
 
+        binding.backBT.setOnClickListener {
+            val intent = Intent(this, CharacterListActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
         // Загружаем изображение с помощью Glide
         Glide.with(this).load(characterImage).into(binding.characterImager)
 

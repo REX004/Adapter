@@ -1,20 +1,25 @@
 package com.tttrfge.rickmorty
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tttrfge.View.recyclerview.FavaroriteAdapter
-import com.tttrfge.Model.FavoritesManager
+import com.tttrfge.Model.repository.FavoritesManager
+import com.tttrfge.View.CharacterListActivity
+import com.tttrfge.rickmorty.databinding.FragmentFavoriteBinding
 
-class FavoriteFragment : AppCompatActivity() {
+class FavoriteActivity : AppCompatActivity() {
 
+    private lateinit var binding: FragmentFavoriteBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var favoriteAdapter: FavaroriteAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_favorite)
+        binding = FragmentFavoriteBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         recyclerView = findViewById(R.id.recyclerViewFavorite)
         favoriteAdapter = FavaroriteAdapter(this)
@@ -28,5 +33,11 @@ class FavoriteFragment : AppCompatActivity() {
 
         // Обновляем данные в адаптере
         favoriteAdapter.updateCharacters(favoriteCharacters)
+
+        binding.backBT.setOnClickListener {
+            val intent = Intent(this, CharacterListActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }
