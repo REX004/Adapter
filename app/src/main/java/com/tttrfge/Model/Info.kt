@@ -1,4 +1,4 @@
-package com.tttrfge.retrofit
+package com.tttrfge.Model
 
 data class Info(
     val count: Int,

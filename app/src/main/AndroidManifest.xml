@@ -20,13 +20,17 @@
         </activity>
         <activity android:name=".CharacterDetailActivity">
         </activity>
-        <activity
-            android:name=".SplashScreen"
-            android:exported="true">
 
+        <activity
+            android:name=".FavoriteFragment"
+            android:exported="true">
         </activity>
         <activity
             android:name=".CharacterListActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +38,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

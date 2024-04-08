@@ -5,18 +5,19 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.ImageView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.tttrfge.RickAdapter
-import com.tttrfge.retrofit.RickAndMortyApi
+import com.tttrfge.View.recyclerview.RickAdapter
+import com.tttrfge.Model.RickAndMortyApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 class CharacterListActivity : AppCompatActivity() {
 
@@ -41,12 +42,18 @@ class CharacterListActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = characterAdapter
-        val searchButton: ImageView = findViewById(R.id.searchBT)
+        val searchButton: Button = findViewById(R.id.button_search)
 
+
+
+            val btFavorites = findViewById<Button>(R.id.button_favorite)
+            btFavorites.setOnClickListener {
+                val intent = Intent(this, FavoriteFragment::class.java)
+                startActivity(intent)
+            }
         searchButton.setOnClickListener {
             val searchIntent = Intent(this, SearchActivity::class.java)
             startActivityForResult(searchIntent, SEARCH_REQUEST_CODE)
-
 
         }
 
@@ -70,8 +77,6 @@ class CharacterListActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == SEARCH_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            val characterName = data?.getStringExtra("characterName")
-
         }
     }
 
@@ -81,14 +86,30 @@ class CharacterListActivity : AppCompatActivity() {
                 val response = withContext(Dispatchers.IO) { apiService.getCharacters(currentPage) }
                 if (response.isSuccessful) {
                     val characters = response.body()?.results ?: emptyList()
-                    characterAdapter.updateCharacters(characters)
-                    currentPage++
+                    if (characters.isEmpty()) {
+                        showError("No characters found", this@CharacterListActivity)
+                    } else {
+                        characterAdapter.updateCharacters(characters)
+                        currentPage++
+                    }
                 } else {
+                    showError("Failed to load characters: ${response.code()}", this@CharacterListActivity)
                 }
             } catch (e: Exception) {
-                e.printStackTrace()
+                showError("Error loading characters: ${e.message}", this@CharacterListActivity)
             }
         }
+    }
+    private fun showError(message: String, activity: Activity) {
+        AlertDialog.Builder(activity)
+            .setTitle("Error")
+            .setMessage(message)
+            .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+            .setNegativeButton("Exit") { dialog, _ ->
+                dialog.dismiss()
+                activity.finish()
+            }
+            .show()
     }
     private val SEARCH_REQUEST_CODE = 1001
 

@@ -1,5 +1,6 @@
-package com.tttrfge.retrofit
+package com.tttrfge.Model
 
+import com.tttrfge.Model.CharacterResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

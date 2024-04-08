@@ -18,6 +18,7 @@ android {
     }
 
     buildFeatures {
+        dataBinding = true
         viewBinding = true
     }
     buildTypes {
@@ -55,7 +56,7 @@ dependencies {
     //RecyclerView
     implementation ("androidx.recyclerview:recyclerview:1.2.1")
 
-
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
 
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")

@@ -1,4 +1,4 @@
-package com.tttrfge.retrofit
+package com.tttrfge.Model
 
 data class CharacterResponse(
     val info: Info,

@@ -1,8 +1,10 @@
 package com.tttrfge.rickmorty
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
@@ -11,8 +13,8 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.tttrfge.RickAdapter
-import com.tttrfge.retrofit.RickAndMortyApi
+import com.tttrfge.View.recyclerview.RickAdapter
+import com.tttrfge.Model.RickAndMortyApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -59,10 +61,30 @@ import retrofit2.converter.gson.GsonConverterFactory
 
         searchButton.setOnClickListener {
             val characterName = searchEditText.text.toString()
-            performSearch(characterName)
+            if (isNetworkConnected()) {
+                performSearch(characterName)
+            } else {
+                showNoInternetDialog(this)
+            }
         }
     }
+     private fun isNetworkConnected(): Boolean {
+         val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+         val activeNetworkInfo = connectivityManager.activeNetworkInfo
+         return activeNetworkInfo != null && activeNetworkInfo.isConnected
+     }
 
+     private fun showNoInternetDialog(activity: Activity) {
+         AlertDialog.Builder(this)
+             .setTitle("No Internet Connection")
+             .setMessage("Please check your internet connection and try again.")
+             .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+             .setNegativeButton("Go Back") {dialog, _ ->
+                 dialog.dismiss()
+                 activity.finish()
+             }
+             .show()
+     }
      override fun onCharacterClick(characterId: Int) {
 
          val intent = Intent(this, CharacterDetailActivity::class.java)
@@ -124,4 +146,3 @@ interface OnCharacterClickListener {
 
     fun onCharacterClick(characterId: Int)
 }
-

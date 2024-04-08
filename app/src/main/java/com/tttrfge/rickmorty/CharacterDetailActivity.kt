@@ -1,67 +1,77 @@
 package com.tttrfge.rickmorty
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.tttrfge.CharacterDatabase
-import com.tttrfge.CharacterEntity
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.tttrfge.Model.FavoritesManager
+import com.tttrfge.Model.Character
+import com.tttrfge.Model.Location
+import com.tttrfge.rickmorty.databinding.CharacterDetailActivityBinding
 
 class CharacterDetailActivity : AppCompatActivity() {
+    lateinit var binding: CharacterDetailActivityBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.character_detail_activity)
+        binding = CharacterDetailActivityBinding.inflate(layoutInflater)
 
-        val characterName = intent.getStringExtra("characterName")
+        setContentView(binding.root)
+
+        // Получаем данные о персонаже из Intent
+        val characterId = intent.getStringExtra("characterId")
+        val characterNames = intent.getStringExtra("characterName")
         val characterStatus = intent.getStringExtra("characterStatus")
-        val characterSpecies = intent.getStringExtra("characterSpecies")
+        val characterLocations = intent.getStringExtra("characterLocation")
+        val characterGender = intent.getStringExtra("characterGender")
+        val characterImage = intent.getStringExtra("Image")
 
-        val addToFavoriteButton: Button = findViewById(R.id.addToFavoritesButton)
 
-        addToFavoriteButton.setOnClickListener {
-            val characterId = intent.getIntExtra("characterId", -1)
-            val characterName = intent.getStringExtra("characterName") ?: ""
-            val characterStatus = intent.getStringExtra("characterStatus") ?: ""
-            val characterSpecies = intent.getStringExtra("characterSpecies") ?: ""
+        // Загружаем изображение с помощью Glide
+        Glide.with(this).load(characterImage).into(binding.characterImager)
 
-            val characterEntity = CharacterEntity(
-                id = characterId,
-                name = characterName,
-                status = characterStatus,
-                species = characterSpecies
-            )
+        binding.apply {
+            characterSpecies.text = "Gender: $characterGender"
+            characterLocation.text = "Location: $characterLocations"
+            characterName.text = characterNames
+            Status.text = "Status: $characterStatus"
+        }
 
-            GlobalScope.launch {
-                withContext(Dispatchers.IO) {
-                    CharacterDatabase.characterDao().insertCharacter(characterEntity)
+
+
+        try {
+            val favoriteButton = findViewById<Button>(R.id.addToFavoritesButton)
+            favoriteButton.setOnClickListener {
+                val character = Character(
+                    characterId ?: "",
+                    characterNames ?: "",
+                    characterStatus ?: "",
+                    characterGender ?: "",
+                    characterImage ?: "",
+                    location = Location(characterLocations ?: "", "")
+                )
+                val favoriteCharacters = FavoritesManager.loadFavorites(this).toMutableList()
+
+                if (favoriteCharacters.contains(character)) {
+
+                    Toast.makeText(this, "Character already added to favorites", Toast.LENGTH_SHORT).show()
+                } else {
+                    // Если персонажа нет в списке, добавляем его
+                    favoriteCharacters.add(character)
+                    // Сохраняем обновленный список
+                    FavoritesManager.saveFavorites(this, favoriteCharacters)
+                    Toast.makeText(this, "Added to favorites", Toast.LENGTH_SHORT).show()
+                    Log.d("Favorites", "Character saved to favorites: $character")
                 }
             }
-            }
-        val characterDetailImage: ImageView = findViewById(R.id.characterImage)
-        val characterDetailName: TextView = findViewById(R.id.characterName)
-        val characterDetailStatus: TextView = findViewById(R.id.Status)
-        val characterDetailSpecies: TextView = findViewById(R.id.characterSpecies)
+        } catch (e: Exception) {
+            Log.e("Favorites", "Error adding character to favorites", e)
+            Toast.makeText(this, "Error adding to favorites", Toast.LENGTH_SHORT).show()
+        }
 
-        Glide.with(this)
-            .load(R.drawable.ic_launcher_foreground)
-            .into(characterDetailImage)
-
-        characterDetailName.text = characterName
-        characterDetailStatus.text = "Status: $characterStatus"
-        characterDetailSpecies.text = "Species: $characterSpecies"
 
     }
-    private fun Any.
-            insertCharacter(characterEntity: CharacterEntity) {
-    }
-
 }
-
