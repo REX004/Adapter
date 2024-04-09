@@ -22,7 +22,7 @@
         </activity>
 
         <activity
-            android:name=".FavoriteActivity"
+            android:name="com.tttrfge.View.FavoriteActivity"
             android:exported="true">
         </activity>
         <activity
@@ -30,7 +30,7 @@
             android:exported="true">
         </activity>
         <activity
-            android:name=".SplashScreen"
+            android:name="com.tttrfge.View.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -7,14 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.tttrfge.View.recyclerview.RickAdapter
 import com.tttrfge.ViewModel.CharacterListViewModel
-import com.tttrfge.rickmorty.FavoriteActivity
-import com.tttrfge.rickmorty.R
 import com.tttrfge.rickmorty.SearchActivity
 import com.tttrfge.rickmorty.databinding.ActivityMainBinding
-
 class CharacterListActivity : AppCompatActivity() {
 
     private lateinit var viewModel: CharacterListViewModel
@@ -29,12 +25,10 @@ class CharacterListActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[CharacterListViewModel::class.java]
 
         binding.buttonFavorite.setOnClickListener {
-            val intent = Intent(this, FavoriteActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, FavoriteActivity::class.java))
         }
         binding.buttonSearch.setOnClickListener {
-            val intent = Intent(this, SearchActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, SearchActivity::class.java))
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = characterAdapter

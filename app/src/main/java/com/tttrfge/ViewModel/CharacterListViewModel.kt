@@ -1,5 +1,6 @@
 package com.tttrfge.ViewModel
 
+import android.app.AlertDialog
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -24,4 +25,10 @@ class CharacterListViewModel : ViewModel() {
             }
         }
     }
+//    fun showError(message: String){
+//        AlertDialog.Builder(this)
+//            .setTitle("")
+//            .setMessage(message)
+//            .set
+//    }
 }

@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class SearchActivityViewModel(private val apiService: RickAndMortyApi): ViewModel() {
+class SearchViewModel(private val apiService: RickAndMortyApi): ViewModel() {
 
     private lateinit var binding: SearchActivityBinding
     private val _characters = MutableLiveData<List<Character>>()

@@ -1,8 +1,8 @@
-package com.tttrfge.rickmorty
+package com.tttrfge.View
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.tttrfge.View.CharacterListActivity
+import com.tttrfge.rickmorty.R
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

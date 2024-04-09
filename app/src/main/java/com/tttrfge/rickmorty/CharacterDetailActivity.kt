@@ -33,8 +33,7 @@ class CharacterDetailActivity : AppCompatActivity() {
 
 
         binding.backBT.setOnClickListener {
-            val intent = Intent(this, CharacterListActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, CharacterListActivity::class.java))
             finish()
         }
         // Загружаем изображение с помощью Glide
@@ -49,9 +48,10 @@ class CharacterDetailActivity : AppCompatActivity() {
 
 
 
+
         try {
-            val favoriteButton = findViewById<Button>(R.id.addToFavoritesButton)
-            favoriteButton.setOnClickListener {
+
+            binding.addToFavoritesButton.setOnClickListener {
                 val character = Character(
                     characterId ?: "",
                     characterNames ?: "",

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tttrfge.View.recyclerview.RickAdapter
 import com.tttrfge.Model.Apis.RickAndMortyApi
 import com.tttrfge.View.CharacterListActivity
-import com.tttrfge.ViewModel.SearchActivityViewModel
+import com.tttrfge.ViewModel.SearchViewModel
 import com.tttrfge.rickmorty.databinding.SearchActivityBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -26,7 +26,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class SearchActivity : Activity(), OnCharacterClickListener {
 
-     private lateinit var viewModel: SearchActivityViewModel
+     private lateinit var viewModel: SearchViewModel
      private lateinit var recyclerView: RecyclerView
      private lateinit var characterAdapter: RickAdapter
      private lateinit var binding: SearchActivityBinding
