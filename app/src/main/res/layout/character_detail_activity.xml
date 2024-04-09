@@ -52,36 +52,43 @@
     <TextView
         android:id="@+id/characterLocation"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginTop="15dp"
         android:layout_gravity="center_horizontal"
         android:text="Status" />
 
-    <LinearLayout
-        android:layout_marginTop="240dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="100dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <Button
             android:id="@+id/addToFavoritesButton"
-            android:layout_width="160dp"
+            android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/search_board"
             android:text="Add to Favorites"
-            app:backgroundTint="@color/backgrount_button" />
+            android:textSize="15dp"
+            app:backgroundTint="@color/backgrount_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <Button
             android:id="@+id/backBT"
-            android:layout_width="160dp"
+            android:layout_width="150dp"
             android:layout_height="60dp"
             android:background="@drawable/search_board"
-            app:backgroundTint="@color/background_search"
             android:fontFamily="@font/rubik_medium"
             android:text="Go Home"
             android:textSize="15dp"
-            android:layout_marginLeft="60dp"
-            />
-    </LinearLayout>
+            app:backgroundTint="@color/background_search"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

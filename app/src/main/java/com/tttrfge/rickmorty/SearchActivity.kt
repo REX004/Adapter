@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tttrfge.View.recyclerview.RickAdapter
 import com.tttrfge.Model.Apis.RickAndMortyApi
 import com.tttrfge.View.CharacterListActivity
+import com.tttrfge.ViewModel.SearchActivityViewModel
 import com.tttrfge.rickmorty.databinding.SearchActivityBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -23,13 +24,14 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
- class SearchActivity : Activity(), OnCharacterClickListener {
+class SearchActivity : Activity(), OnCharacterClickListener {
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var characterAdapter: RickAdapter
-    private lateinit var binding: SearchActivityBinding
+     private lateinit var viewModel: SearchActivityViewModel
+     private lateinit var recyclerView: RecyclerView
+     private lateinit var characterAdapter: RickAdapter
+     private lateinit var binding: SearchActivityBinding
 
-    private val retrofit = Retrofit.Builder()
+     private val retrofit = Retrofit.Builder()
         .baseUrl("https://rickandmortyapi.com/api/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
