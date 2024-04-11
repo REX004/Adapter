@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -13,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tttrfge.View.recyclerview.RickAdapter
 import com.tttrfge.Model.Apis.RickAndMortyApi
-import com.tttrfge.View.CharacterListActivity
 import com.tttrfge.ViewModel.SearchViewModel
 import com.tttrfge.rickmorty.databinding.SearchActivityBinding
 import kotlinx.coroutines.Dispatchers
@@ -52,13 +52,18 @@ class SearchActivity : Activity(), OnCharacterClickListener {
         recyclerView.adapter = characterAdapter
 
         binding.wordFind.setOnEditorActionListener { _, actionId, _ ->
+            binding.loadingBar.visibility = View.VISIBLE
+
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 val characterName = binding.wordFind.text.toString()
                 performSearch(characterName)
                 hideKeyboard()
                 return@setOnEditorActionListener true
+
             }
+
             false
+
         }
         binding.backBT.setOnClickListener {
             val intent = Intent(this, CharacterListActivity::class.java)
@@ -109,15 +114,19 @@ class SearchActivity : Activity(), OnCharacterClickListener {
                     runOnUiThread {
                         if (characters.isEmpty()) {
                             showNotification("No found")
+
                         } else {
                             characterAdapter.updateCharacters(characters)
                             characterAdapter.notifyDataSetChanged()
+                            binding.loadingBar.visibility = View.GONE
+
                         }
                     }
                 } else {
 
                 }
             } catch (e: Exception) {
+
                 e.printStackTrace()
             }
         }

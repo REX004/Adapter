@@ -5,5 +5,17 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <style name="AppTheme"
+        parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">
+            @drawable/reek_morty
+        </item>
+    </style>
+    <style name="LoadingTheme"
+        parent="AppTheme">
+        <item name="android:windowBackground">
+            @drawable/loading_screen
+        </item>
+    </style>
     <style name="Theme.RickMorty" parent="Base.Theme.RickMorty" />
 </resources>

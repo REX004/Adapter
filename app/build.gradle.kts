@@ -69,6 +69,8 @@ dependencies {
 
     implementation ("com.squareup.retrofit2:converter-gson:2.5.0")
 
+    implementation("androidx.room:room-ktx:2.6.1")
+
 
 
 

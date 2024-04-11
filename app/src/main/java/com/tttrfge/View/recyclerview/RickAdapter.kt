@@ -21,10 +21,8 @@ class RickAdapter(private val context: Context)
 
     private val characters: MutableList<Character> = mutableListOf()
 
-    private var lastLoadedIndex = 0
     @SuppressLint("NotifyDataSetChanged")
     fun updateCharacters(newCharacters: List<Character>) {
-        lastLoadedIndex = characters.size
         characters.addAll(newCharacters)
         notifyDataSetChanged()
     }

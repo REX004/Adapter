@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tttrfge.View.recyclerview.FavaroriteAdapter
 import com.tttrfge.ViewModel.FavoriteViewModel
+import com.tttrfge.rickmorty.CharacterListActivity
 import com.tttrfge.rickmorty.databinding.FragmentFavoriteBinding
 
 class FavoriteActivity : AppCompatActivity() {

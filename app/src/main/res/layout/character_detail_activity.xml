@@ -65,7 +65,7 @@
 
         <Button
             android:id="@+id/addToFavoritesButton"
-            android:layout_width="150dp"
+            android:layout_width="110dp"
             android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/search_board"
@@ -78,7 +78,7 @@
 
         <Button
             android:id="@+id/backBT"
-            android:layout_width="150dp"
+            android:layout_width="110dp"
             android:layout_height="60dp"
             android:background="@drawable/search_board"
             android:fontFamily="@font/rubik_medium"
@@ -87,6 +87,21 @@
             app:backgroundTint="@color/background_search"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/favoritesBT"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:background="@drawable/search_board"
+            android:fontFamily="@font/rubik_medium"
+            android:text="Favorites"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            app:backgroundTint="@color/background_favorites"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/backBT"
+            app:layout_constraintStart_toEndOf="@+id/addToFavoritesButton"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

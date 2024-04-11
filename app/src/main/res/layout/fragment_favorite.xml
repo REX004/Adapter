@@ -35,5 +35,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ProgressBar
+        android:id="@+id/loadingBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerViewFavorite"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerViewFavorite"
+        app:layout_constraintStart_toStartOf="@+id/recyclerViewFavorite"
+        app:layout_constraintTop_toTopOf="@+id/recyclerViewFavorite" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

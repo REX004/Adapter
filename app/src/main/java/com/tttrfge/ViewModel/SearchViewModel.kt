@@ -13,7 +13,6 @@ import kotlinx.coroutines.withContext
 
 class SearchViewModel(private val apiService: RickAndMortyApi): ViewModel() {
 
-    private lateinit var binding: SearchActivityBinding
     private val _characters = MutableLiveData<List<Character>>()
     val characters: LiveData<List<Character>> = _characters
 
